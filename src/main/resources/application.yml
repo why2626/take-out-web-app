@@ -21,4 +21,4 @@ mybatis-plus:
     db-config:
       id-type: ID_WORKER
 reggie:
-  path: "E:/img/"
+  path: /Users/maxinewei/My_programming/uploadFile

@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 菜品及套餐分类
+ * 菜品口味关系表
  * </p>
  *
  * @author anyi
@@ -26,8 +26,8 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="Category对象", description="菜品及套餐分类")
-public class Category implements Serializable {
+@ApiModel(value="DishFlavor对象", description="菜品口味关系表")
+public class DishFlavor implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,14 +35,14 @@ public class Category implements Serializable {
     @TableId(value = "id", type = IdType.ID_WORKER)
     private Long id;
 
-    @ApiModelProperty(value = "类型   1 菜品分类 2 套餐分类")
-    private Integer type;
+    @ApiModelProperty(value = "菜品")
+    private Long dishId;
 
-    @ApiModelProperty(value = "分类名称")
+    @ApiModelProperty(value = "口味名称")
     private String name;
 
-    @ApiModelProperty(value = "顺序")
-    private Integer sort;
+    @ApiModelProperty(value = "口味数据list")
+    private String value;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @TableField(fill = FieldFill.INSERT)
@@ -50,14 +50,20 @@ public class Category implements Serializable {
     private Date createTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @TableField(fill = FieldFill.UPDATE) // 插入和更新时填充字段
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty(value = "更新时间")
     private Date updateTime;
 
     @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "创建人")
     private Long createUser;
-    @TableField(fill = FieldFill.UPDATE)
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty(value = "修改人")
     private Long updateUser;
+
+    @ApiModelProperty(value = "是否删除")
+    private Integer isDeleted;
+
+
 }
